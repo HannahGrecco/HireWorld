@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->char('iso_code', 2)->unique;
-            $table->string('region', 100)->nullable;
-            $table->char('currency_code', 3)->nullable;
-            $table->string('official_language', 100)->nullable;
-            $table->string('timezone', 100)->nullable;
-            $table->string('flag_emoji', 10)->nullable;
+            $table->char('iso_code', 2)->unique();
+            $table->string('region', 100)->nullable();
+            $table->char('currency_code', 3)->nullable();
+            $table->string('official_language', 100)->nullable();
+            $table->string('timezone', 100)->nullable();
+            $table->string('flag_emoji', 10)->nullable();
             $table->timestamps();
         });
     }
