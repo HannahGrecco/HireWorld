@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('country_id')->constrained()->cascadeOnDelete();
             $table->boolean('pdf_generated')->default(false);
-            $table->timestamps('created_at')->nullable();
+            $table->timestamp('created_at')->nullable();
         });
     }
 

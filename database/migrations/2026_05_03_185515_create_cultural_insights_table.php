@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('communication_style')->nullable();
             $table->text('things_to_avoid')->nullable();
             $table->boolean('generated_by_ai')->default(false);
-            $table->timestamps('generated_at')->nullable();
+            $table->timestamp('generated_at')->nullable();
         });
     }
 
