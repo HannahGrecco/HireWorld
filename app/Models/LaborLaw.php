@@ -12,7 +12,7 @@ use App\Models\Country;
 #[Fillable(['country_id', 'weekly_hours_limit', 'min_vacation_days', 'min_wage_local', 'min_wage_period', 'contract_types', 'notice_period_days','source_url'])]
 class LaborLaw extends Model
 {
-    use hasFactory;
+    use HasFactory;
 
     public function country(){
         return $this->belongsTo(Country::class);
