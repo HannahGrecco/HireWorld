@@ -1,27 +1,27 @@
 # HireWorld
 
-Sistema desenvolvido em Laravel para auxiliar empresas na expansão internacional e contratação de profissionais em outros países.
+System developed with Laravel to help companies expand internationally and hire professionals in other countries.
 
-O projeto tem como objetivo gerar relatórios com informações relevantes sobre diferentes países, incluindo:
-- leis trabalhistas locais
-- feriados nacionais
-- salário médio de mercado
-- formas de contratação
-- moeda e câmbio
-- aspectos culturais do ambiente de trabalho
+The project aims to generate reports with relevant information about different countries, including:
+- local labor laws
+- national holidays
+- average market salary
+- hiring and contract models
+- currency and exchange rates
+- workplace cultural insights
 
 ## Status
 
-🚧 Projeto em desenvolvimento.
+🚧 Project under development.
 
-Atualmente o sistema possui:
-- importação de países via Seeder
-- armazenamento em banco de dados
-- busca de países por nome
-- autocomplete de pesquisa
-- interface Blade com TailwindCSS
+Currently, the system includes:
+- country import using Seeders
+- database storage
+- country search by name
+- search autocomplete
+- Blade interface with TailwindCSS
 
-## Tecnologias utilizadas
+## Technologies
 
 - Laravel
 - PHP
@@ -29,7 +29,7 @@ Atualmente o sistema possui:
 - TailwindCSS
 - MySQL
 
-## Como executar
+## Running the project
 
 ```bash
 composer install
