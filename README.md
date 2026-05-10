@@ -1,20 +1,27 @@
-# Country Search
+# HireWorld
 
-Projeto desenvolvido em Laravel para consulta e busca de países utilizando dados consumidos da API REST Countries.
+System developed with Laravel to help companies expand internationally and hire professionals in other countries.
+
+The project aims to generate reports with relevant information about different countries, including:
+- local labor laws
+- national holidays
+- average market salary
+- hiring and contract models
+- currency and exchange rates
+- workplace cultural insights
 
 ## Status
 
-🚧 Projeto em desenvolvimento.
+🚧 Project under development.
 
-## Funcionalidades
+Currently, the system includes:
+- country import using Seeders
+- database storage
+- country search by name
+- search autocomplete
+- Blade interface with TailwindCSS
 
-- Importação de países via Seeder
-- Armazenamento em banco de dados
-- Busca de países por nome
-- Interface Blade com TailwindCSS
-- Autocomplete utilizando datalist
-
-## Tecnologias utilizadas
+## Technologies
 
 - Laravel
 - PHP
@@ -22,7 +29,7 @@ Projeto desenvolvido em Laravel para consulta e busca de países utilizando dado
 - TailwindCSS
 - MySQL
 
-## Como executar
+## Running the project
 
 ```bash
 composer install
