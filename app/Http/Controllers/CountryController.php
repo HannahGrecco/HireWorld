@@ -21,7 +21,7 @@ class CountryController extends Controller
         $country = Country::findOrFail($id);
 
         $service = new HolidayService();
-        $holidays = $service->getHolidays($country);
+        $holidays = $service->getHolidays($country) ?? [];
 
         return view ('countries.show', compact('country', 'holidays'));
 

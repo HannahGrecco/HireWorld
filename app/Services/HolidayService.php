@@ -15,9 +15,14 @@ class HolidayService
     public function getHolidays(Country $country)
     {
         $currentYear = now()->year;
-        $existing_holidays = PublicHoliday::where('country_id', $country->id)->where('year', $currentYear)->count();
-        if($existing_holidays >0){
-            return $existing_holidays;
+        $existing_holidays = PublicHoliday::where('country_id', $country->id)
+            ->where('year', $currentYear)
+            ->count();
+        if ($existing_holidays > 0) {
+            return PublicHoliday::where('country_id', $country->id)
+                ->where('year', $currentYear)
+                ->get(['name', 'date'])
+                ->toArray();
         } else
         {
             $response = Http::get("https://date.nager.at/api/v3/PublicHolidays/{$currentYear}/{$country->iso_code}");
@@ -29,7 +34,7 @@ class HolidayService
                     'status' => $response->status(),
                     'body' => $response->body(),
                 ]);
-                return;
+                return [];
             }
 
             $holydays = $response->json();
@@ -40,18 +45,19 @@ class HolidayService
                     'status' => $response->status(),
                     'body' => $response->body(),
                 ]);
-                return;
+                return [];
             }
 
         foreach ($holydays as $holyday) {
             PublicHoliday::create([
                 'country_id' => $country->id,
-                'name'       => $holyday['name'],
-                'date'       => $holyday['date'],
+                'name'       => $holyday['name'] ?? $holyday['localName'] ?? null,
+                'date'       => $holyday['date'] ?? null,
                 'year'       => $currentYear,
-                'is_fixed'   => true,
+                'is_fixed'   => $holyday['fixed'] ?? true,
             ]);
         }
+        return $holydays;
         }
     }
 }
