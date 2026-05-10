@@ -34,10 +34,10 @@
 
                 @foreach($countries as $country)
 
-                    <div class="p-2 border-b">
+                    <a class="block p-2 border-b hover:bg-gray-100" href="{{ url('/countries/'.$country->id) }}">
                         {{ $country->flag_emoji }}
                         {{ $country->name }}
-                    </div>
+                    </a>
 
                 @endforeach
 

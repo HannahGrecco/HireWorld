@@ -19,5 +19,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
+Route::get('/countries/{id}', [CountryController::class, 'show']);
 
 require __DIR__.'/auth.php';
