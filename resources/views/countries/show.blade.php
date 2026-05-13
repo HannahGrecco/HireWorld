@@ -18,8 +18,8 @@
         {{-- Header do país --}}
         <div class="bg-white rounded-2xl shadow p-6 mb-6">
             <div class="flex items-center gap-4 mb-4">
-                <span class="text-5xl">{{ $country->flag_emoji }}</span>
-                <div>
+                <span class="text-5xl leading-none">{{ $country->flag_emoji }}</span>
+                <div class="ml-auto flex flex-col justify-center text-right">
                     <h1 class="text-2xl font-semibold text-gray-800">{{ $country->name }}</h1>
                     <span class="text-sm text-gray-400">{{ $country->iso_code }}</span>
                 </div>
@@ -41,6 +41,10 @@
                 <div>
                     <span class="font-medium text-gray-700">Fuso horário</span>
                     <p>{{ $country->timezone ?? '—' }}</p>
+                </div>
+                <div>
+                    <span class="font-medium text-gray-700">1 USD</span>
+                    <p>{{ $rates }} {{ $country->currency_code }}</p>
                 </div>
             </div>
         </div>

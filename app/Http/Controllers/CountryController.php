@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Services\HolidayService;
+use App\Services\ExchangeRateService;
 
 
 class CountryController extends Controller
@@ -20,10 +21,12 @@ class CountryController extends Controller
     public function show ($id) {
         $country = Country::findOrFail($id);
 
+        $serviceRate = new ExchangeRateService();
         $service = new HolidayService();
+        $rates = $serviceRate->getRate($country) ?? [];
         $holidays = $service->getHolidays($country) ?? [];
 
-        return view ('countries.show', compact('country', 'holidays'));
+        return view('countries.show', compact('country', 'holidays', 'rates'));
 
     }
 
