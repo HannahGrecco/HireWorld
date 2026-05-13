@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Services\HolidayService;
 use App\Services\ExchangeRateService;
+use App\Services\CulturalInsightService;
 
 
 class CountryController extends Controller
@@ -23,10 +24,13 @@ class CountryController extends Controller
 
         $serviceRate = new ExchangeRateService();
         $service = new HolidayService();
+        $serviceInsight = new CulturalInsightService();
         $rates = $serviceRate->getRate($country) ?? [];
         $holidays = $service->getHolidays($country) ?? [];
+        $insights = $serviceInsight->getCulturalInsight($country) ?? [];
 
-        return view('countries.show', compact('country', 'holidays', 'rates'));
+
+        return view('countries.show', compact('country', 'holidays', 'rates', 'insights'));
 
     }
 

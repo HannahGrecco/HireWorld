@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
     'open_exchange_rates_key' => env('OPEN_EXCHANGE_RATES_KEY'),
+    'gemini_api_key' => env('GEMINI_API_KEY'),
 ];

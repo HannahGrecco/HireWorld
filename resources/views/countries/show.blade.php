@@ -47,6 +47,31 @@
                     <p>{{ $rates }} {{ $country->currency_code }}</p>
                 </div>
             </div>
+
+        </div>
+        <div class="bg-white rounded-2xl shadow p-6 mb-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">🌍 Cultura de Negócios</h2>
+
+            <div class="space-y-4 text-sm text-gray-600">
+                <div>
+                    <p class="font-medium text-gray-700">Etiqueta em reuniões</p>
+                    <p>{{ $insights['business_etiquette'] ?? '—' }}</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-700">Estilo de decisão</p>
+                    <p>{{ $insights['decision_making_style'] ?? '—' }}</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-700">Comunicação</p>
+                    <p>{{ $insights['communication_style'] ?? '—' }}</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-700">O que evitar</p>
+                    <p>{{ $insights['things_to_avoid'] ?? '—' }}</p>
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-400 mt-4">⚠️ Conteúdo gerado por IA — use como guia, não como fonte definitiva.</p>
         </div>
 
         {{-- Feriados --}}
