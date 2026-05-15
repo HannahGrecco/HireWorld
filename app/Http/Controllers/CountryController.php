@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Services\HolidayService;
 use App\Services\ExchangeRateService;
 use App\Services\CulturalInsightService;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class CountryController extends Controller
@@ -32,6 +33,20 @@ class CountryController extends Controller
 
         return view('countries.show', compact('country', 'holidays', 'rates', 'insights'));
 
+    }
+    public function generatePdf ($id){
+         $country = Country::findOrFail($id);
+
+        $serviceRate = new ExchangeRateService();
+        $service = new HolidayService();
+        $serviceInsight = new CulturalInsightService();
+        $rates = $serviceRate->getRate($country) ?? [];
+        $holidays = $service->getHolidays($country) ?? [];
+        $insights = $serviceInsight->getCulturalInsight($country) ?? [];
+
+        $pdf = Pdf::loadView('countries.pdf', compact('country', 'holidays', 'rates', 'insights'));
+
+        return $pdf->download("{$country->name}-hireworld.pdf");
     }
 
 }

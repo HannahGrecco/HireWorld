@@ -20,5 +20,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
 Route::get('/countries/{id}', [CountryController::class, 'show']);
+Route::get('/countries/{id}/pdf', [CountryController::class, 'generatePdf'])->name('countries.pdf');
+
 
 require __DIR__.'/auth.php';
