@@ -1,21 +1,34 @@
-FROM  php:8.3-fpm-alpine
+FROM php:8.3-cli-alpine
 
 RUN apk add --no-cache \
     bash \
     curl \
     libpng-dev \
     libzip-dev \
-    zlib-dev
+    zlib-dev \
+    nodejs \
+    npm \
+    git \
+    zip \
+    unzip
 
-RUN docker-php-ext-install gd \
-    && docker-php-ext-install zip
+RUN docker-php-ext-install \
+    gd \
+    zip \
+    pdo \
+    pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install node and npm
-RUN apk add --no-cache nodejs npm
-
-# Set working directory
 WORKDIR /var/www
 
-EXPOSE 9000
+COPY . .
+
+RUN composer install --no-dev --optimize-autoloader
+
+RUN npm install
+RUN npm run build
+
+EXPOSE 8080
+
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
