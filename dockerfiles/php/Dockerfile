@@ -29,7 +29,6 @@ RUN composer install --no-dev --optimize-autoloader
 RUN npm install
 RUN npm run build
 
-RUN php artisan optimize:clear
 
 EXPOSE 8080
 
