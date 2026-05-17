@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.3-cli-alpine
 
 RUN apk add --no-cache \
     bash \
@@ -25,8 +25,8 @@ WORKDIR /var/www
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
-RUN npm install && npm run build
+RUN npm ci && npm run build
 
-EXPOSE 9000
+EXPOSE 8080
 
-CMD ["php-fpm"]
+CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
