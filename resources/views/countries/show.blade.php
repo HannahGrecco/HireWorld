@@ -93,7 +93,28 @@
                 @endforelse
             </ul>
         </div>
-
+        {{-- Salários --}}
+        <div class="bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6 mt-6">
+            <h2 class="text-lg font-semibold text-slate-900 mb-4">Salários Tech</h2>
+            @if (is_array($techSalaries) && isset($techSalaries['salary']))
+                <ul>
+                    <li>
+                        <p class="text-sm text-slate-600">Media anual (USD): <span class="text-slate-900">{{ $techSalaries['salary']['average'] ?? '—' }}</span></p>
+                    </li>
+                    <li>
+                        <p class="text-sm text-slate-600">Mediana anual (USD): <span class="text-slate-900">{{ $techSalaries['salary']['median'] ?? '—' }}</span></p>
+                    </li>
+                    <li>
+                        <p class="text-sm text-slate-600">Min (USD): <span class="text-slate-900">{{ $techSalaries['salary']['min'] ?? '—' }}</span></p>
+                    </li>
+                    <li>
+                        <p class="text-sm text-slate-600">Max (USD): <span class="text-slate-900">{{ $techSalaries['salary']['max'] ?? '—' }}</span></p>
+                    </li>
+                </ul>
+            @else
+                <p class="text-sm text-slate-400">Sem dados de salarios para este pais.</p>
+            @endif
+        </div>
     </div>
 
 </x-countries-layout>

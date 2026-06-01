@@ -9,7 +9,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('countries.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/countries', [CountryController::class, 'index'])->name('countries.index');
-Route::get('/countries/{id}', [CountryController::class, 'show']);
+Route::get('/countries/{id}', [CountryController::class, 'show'])->name('countries.show');
 Route::get('/countries/{id}/pdf', [CountryController::class, 'generatePdf'])->name('countries.pdf');
 
 
