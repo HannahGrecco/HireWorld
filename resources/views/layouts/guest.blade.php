@@ -5,22 +5,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'HireWorld') }}</title>
 
-        <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
 
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>body { font-family: 'Instrument Sans', sans-serif; }</style>
     </head>
-    <body style="background-image: linear-gradient(160deg, rgba(15, 23, 42, 0.82), rgba(2, 6, 23, 0.6)), url('/landingBg.jpg')" class="font-sans text-slate-900 antialiased bg-cover bg-center">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-10 sm:pt-0 relative">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.2),transparent_45%),radial-gradient(circle_at_80%_10%,rgba(16,185,129,0.25),transparent_40%),radial-gradient(circle_at_50%_80%,rgba(253,186,116,0.2),transparent_45%)] pointer-events-none"></div>
+    <body class="bg-[#080E1A] text-white antialiased min-h-screen flex flex-col">
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white/95 shadow-xl overflow-hidden rounded-2xl border border-white/60 relative">
-                {{ $slot }}
+        {{-- Navbar --}}
+        <nav class="bg-[#080E1A] border-b border-white/10 px-6 sm:px-10 py-4 flex items-center justify-between">
+            <a href="/" class="font-semibold text-white text-base">HireWorld</a>
+            <div class="flex items-center gap-4">
+                @if (Route::has('login'))
+                    <a href="{{ route('login') }}" class="text-sm text-white/60 hover:text-white transition">Entrar</a>
+                @endif
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="text-sm bg-white text-[#080E1A] font-semibold px-4 py-2 rounded-lg hover:bg-white/90 transition">Começar</a>
+                @endif
+            </div>
+        </nav>
+
+        {{-- Content --}}
+        <div class="flex-1 flex items-center justify-center px-4 py-16">
+            <div class="w-full max-w-md">
+                <div class="bg-white/5 border border-white/10 rounded-2xl px-8 py-10 shadow-xl">
+                    {{ $slot }}
+                </div>
             </div>
         </div>
+
     </body>
 </html>
