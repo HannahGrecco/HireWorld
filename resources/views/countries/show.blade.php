@@ -1,121 +1,121 @@
-<x-countries-layout :title="$country->name">
-
+<x-countries-layout :title="$country->name . ' — HireWorld'">
     <div class="max-w-4xl mx-auto">
 
-        <div class="flex items-center justify-between mb-6">
-            <a href="{{ route('countries.index') }}" class="bg-white/95 border border-white/60 text-slate-700 hover:text-slate-900 px-4 py-2 rounded-full text-sm shadow inline-block">
+        {{-- Top bar --}}
+        <div class="flex items-center justify-between mb-8">
+            <a href="{{ route('countries.index') }}" class="text-sm text-white/50 hover:text-white transition">
                 ← Voltar
             </a>
-            <div class="flex items-center gap-3">
-                <a href="{{ route('countries.pdf', $country->id) }}"
-                class="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm hover:bg-slate-800">
-                    Baixar relatorio PDF
-                </a>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="bg-white/95 border border-white/60 text-slate-700 hover:text-slate-900 px-4 py-2 rounded-full text-sm shadow">
-                        Sair
-                    </button>
-                </form>
-            </div>
+            <a href="{{ route('countries.pdf', $country->id) }}"
+               class="bg-white text-[#080E1A] font-semibold text-sm px-4 py-2 rounded-lg hover:bg-white/90 transition">
+                Baixar PDF
+            </a>
         </div>
-        {{-- Header do país --}}
-        <div class="bg-white/95 rounded-2xl shadow-xl border border-white/60 p-6 mb-6">
-            <div class="flex items-center gap-4 mb-4">
+
+        {{-- Country header --}}
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-5">
+            <div class="flex items-center gap-4 mb-6">
                 <span class="text-5xl leading-none">{{ $country->flag_emoji }}</span>
-                <div class="ml-auto flex flex-col justify-center text-right">
-                    <h1 class="text-2xl font-semibold text-slate-900">{{ $country->name }}</h1>
-                    <span class="text-sm text-slate-400">{{ $country->iso_code }}</span>
+                <div>
+                    <h1 class="text-2xl font-bold text-white">{{ $country->name }}</h1>
+                    <span class="text-sm text-white/40">{{ $country->iso_code }}</span>
                 </div>
             </div>
-
-            <div class="grid grid-cols-2 gap-4 text-sm text-slate-600">
-                <div>
-                    <span class="font-medium text-slate-700">Regiao</span>
-                    <p>{{ $country->region ?? '—' }}</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Região</p>
+                    <p class="text-white text-sm font-medium">{{ $country->region ?? '—' }}</p>
                 </div>
-                <div>
-                    <span class="font-medium text-slate-700">Idioma oficial</span>
-                    <p>{{ $country->official_language ?? '—' }}</p>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Idioma oficial</p>
+                    <p class="text-white text-sm font-medium">{{ $country->official_language ?? '—' }}</p>
                 </div>
-                <div>
-                    <span class="font-medium text-slate-700">Moeda</span>
-                    <p>{{ $country->currency_code ?? '—' }}</p>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Moeda</p>
+                    <p class="text-white text-sm font-medium">{{ $country->currency_code ?? '—' }}</p>
                 </div>
-                <div>
-                    <span class="font-medium text-slate-700">Fuso horario</span>
-                    <p>{{ $country->timezone ?? '—' }}</p>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Fuso horário</p>
+                    <p class="text-white text-sm font-medium">{{ $country->timezone ?? '—' }}</p>
                 </div>
-                <div>
-                    <span class="font-medium text-slate-700">1 USD</span>
-                    <p>{{ $rates }} {{ $country->currency_code }}</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6 mb-6">
-            <h2 class="text-lg font-semibold text-slate-900 mb-4">🌍 Cultura de Negocios</h2>
-
-            <div class="space-y-4 text-sm text-slate-600">
-                <div>
-                    <p class="font-medium text-slate-700">Etiqueta em reunioes</p>
-                    <p>{{ $insights['business_etiquette'] ?? '—' }}</p>
-                </div>
-                <div>
-                    <p class="font-medium text-slate-700">Estilo de decisao</p>
-                    <p>{{ $insights['decision_making_style'] ?? '—' }}</p>
-                </div>
-                <div>
-                    <p class="font-medium text-slate-700">Comunicacao</p>
-                    <p>{{ $insights['communication_style'] ?? '—' }}</p>
-                </div>
-                <div>
-                    <p class="font-medium text-slate-700">O que evitar</p>
-                    <p>{{ $insights['things_to_avoid'] ?? '—' }}</p>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">1 USD</p>
+                    <p class="text-cyan-400 text-sm font-semibold">{{ $rates ?? '—' }} {{ $country->currency_code }}</p>
                 </div>
             </div>
-
-            <p class="text-xs text-slate-400 mt-4">⚠️ Conteudo gerado por IA — use como guia, nao como fonte definitiva.</p>
         </div>
 
-        {{-- Feriados --}}
-        <div class="bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6">
-            <h2 class="text-lg font-semibold text-slate-900 mb-4">Feriados {{ now()->year }}</h2>
-
-            <ul class="divide-y divide-gray-100">
-                @forelse($holidays as $holiday)
-                    <li class="py-3 flex justify-between text-sm">
-                        <span class="text-slate-700">{{ $holiday['name'] }}</span>
-                        <span class="text-slate-400">{{ \Carbon\Carbon::parse($holiday['date'])->format('d/m/Y') }}</span>
-                    </li>
-                @empty
-                    <li class="py-3 text-sm text-slate-400">Nenhum feriado encontrado para este pais.</li>
-                @endforelse
-            </ul>
+        {{-- Insights Culturais --}}
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-5">
+            <h2 class="text-base font-semibold text-white mb-5">🌍 Cultura de Negócios</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Etiqueta em reuniões</p>
+                    <p class="text-white/80 text-sm">{{ $insights['business_etiquette'] ?? '—' }}</p>
+                </div>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Estilo de decisão</p>
+                    <p class="text-white/80 text-sm">{{ $insights['decision_making_style'] ?? '—' }}</p>
+                </div>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">Comunicação</p>
+                    <p class="text-white/80 text-sm">{{ $insights['communication_style'] ?? '—' }}</p>
+                </div>
+                <div class="bg-white/5 rounded-xl px-4 py-3">
+                    <p class="text-white/40 text-xs mb-1">O que evitar</p>
+                    <p class="text-white/80 text-sm">{{ $insights['things_to_avoid'] ?? '—' }}</p>
+                </div>
+            </div>
+            <p class="text-xs text-white/20 mt-4">⚠️ Conteúdo gerado por IA — use como guia, não como fonte definitiva.</p>
         </div>
-        {{-- Salários --}}
-        <div class="bg-white/95 rounded-2xl shadow-lg border border-white/60 p-6 mt-6">
-            <h2 class="text-lg font-semibold text-slate-900 mb-4">Salários Tech</h2>
-            @if (is_array($techSalaries) && isset($techSalaries['salary']))
-                <ul>
-                    <li>
-                        <p class="text-sm text-slate-600">Media anual (USD): <span class="text-slate-900">{{ $techSalaries['salary']['average'] ?? '—' }}</span></p>
-                    </li>
-                    <li>
-                        <p class="text-sm text-slate-600">Mediana anual (USD): <span class="text-slate-900">{{ $techSalaries['salary']['median'] ?? '—' }}</span></p>
-                    </li>
-                    <li>
-                        <p class="text-sm text-slate-600">Min (USD): <span class="text-slate-900">{{ $techSalaries['salary']['min'] ?? '—' }}</span></p>
-                    </li>
-                    <li>
-                        <p class="text-sm text-slate-600">Max (USD): <span class="text-slate-900">{{ $techSalaries['salary']['max'] ?? '—' }}</span></p>
-                    </li>
+
+        {{-- Grid: Feriados + Salários --}}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+            {{-- Feriados --}}
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <h2 class="text-base font-semibold text-white mb-4">📅 Feriados {{ now()->year }}</h2>
+                <ul class="space-y-2">
+                    @forelse($holidays as $holiday)
+                        <li class="flex justify-between text-sm py-2 border-b border-white/5 last:border-0">
+                            <span class="text-white/80">{{ $holiday['name'] }}</span>
+                            <span class="text-white/40 shrink-0 ml-2">{{ \Carbon\Carbon::parse($holiday['date'])->format('d/m') }}</span>
+                        </li>
+                    @empty
+                        <li class="text-sm text-white/30">Nenhum feriado encontrado.</li>
+                    @endforelse
                 </ul>
-            @else
-                <p class="text-sm text-slate-400">Sem dados de salarios para este pais.</p>
-            @endif
+            </div>
+
+            {{-- Salários Tech --}}
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <h2 class="text-base font-semibold text-white mb-4">💻 Salários Tech</h2>
+                @if (is_array($techSalaries) && isset($techSalaries['salary']))
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-white/5">
+                            <span class="text-white/50 text-sm">Média anual</span>
+                            <span class="text-cyan-400 font-semibold text-sm">${{ number_format($techSalaries['salary']['average']) }}</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5">
+                            <span class="text-white/50 text-sm">Mediana anual</span>
+                            <span class="text-white text-sm font-medium">${{ number_format($techSalaries['salary']['median']) }}</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-white/5">
+                            <span class="text-white/50 text-sm">Mínimo</span>
+                            <span class="text-white text-sm font-medium">${{ number_format($techSalaries['salary']['min']) }}</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-white/50 text-sm">Máximo</span>
+                            <span class="text-white text-sm font-medium">${{ number_format($techSalaries['salary']['max']) }}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-white/20 mt-4">Fonte: Stack Overflow Survey {{ $techSalaries['survey_year'] ?? '' }}</p>
+                @else
+                    <p class="text-sm text-white/30">Sem dados de salários para este país.</p>
+                @endif
+            </div>
+
         </div>
+
     </div>
-
 </x-countries-layout>
-
